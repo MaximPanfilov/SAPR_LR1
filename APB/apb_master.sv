@@ -1,6 +1,6 @@
 module apb_master(apb_interface apb_if);
 
-    always_ff @(posedge apb_if.PCLK or negedge apb_if.PRESETn) begin
+    always_ff @(negedge apb_if.PRESETn) begin
         if (!apb_if.PRESETn) begin 
 	apb_if.PSEL    = 0;   
         apb_if.PENABLE = 0;   
@@ -8,11 +8,12 @@ module apb_master(apb_interface apb_if);
         apb_if.PADDR   = 0;   
         apb_if.PWDATA  = 0;    
     	apb_if.PRDATA  = 0;
+	end
 
         $display("[APB_MASTER] Reset : Start");  
-    endfunction
+    end
 
-    //[TO DO: check signals synchron]
+	
     task write(input logic [31:0] waddr, input logic [31:0] wdata);
         $display("\n[APB_MASTER] Write: %05d, d data: %03d", waddr, wdata);
         
@@ -39,9 +40,9 @@ module apb_master(apb_interface apb_if);
 	
     endtask
 
-    //[TO DO: check signals synchron]
+    
     task read(input logic [31:0] raddr);
-	logic [31:0] rdata = '0;
+	automatic logic [31:0] rdata = '0;
         apb_if.PSEL    = 1;    
         apb_if.PENABLE = 0;    
         apb_if.PWRITE  = 0;  
@@ -63,4 +64,4 @@ module apb_master(apb_interface apb_if);
         $display("[APB_MASTER] Read completed \n");  
     endtask 
    
- endclass
+ endmodule

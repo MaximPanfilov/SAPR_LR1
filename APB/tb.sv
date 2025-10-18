@@ -18,10 +18,10 @@ module tb_apb();
 
     apb_slave apb_slave (apb_if.slave_mp);
     apb_master apb_master (apb_if.master_mp);
-    initial begin
-	
-	@(posedge rst_n);
-	//[TO DO: complete tests from LR1]
+    
+   initial begin
+	@(posedge reset);
+
 	$display("\n\t=====[TEST] test 1. Write and Read =====");
 	apb_master.write(0, 17);
 	apb_master.read(0);
@@ -29,7 +29,7 @@ module tb_apb();
 	apb_master.write(8, "APB");
 	$display("\n\t=====[TEST] test 3. Read =====");
 	apb_master.read(8);
-	#15
+	#15;
     end
 
 endmodule
