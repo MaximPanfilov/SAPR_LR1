@@ -35,7 +35,11 @@ module apb_slave(apb_interface apb_if);
 
             end // PSEL && PENABLE && !PWRITE
 
-	if (!apb_if.PSEL) apb_if.PREADY <= 1'b0;
+	if (!apb_if.PSEL) begin 
+		apb_if.PREADY <= 1'b0;
+		if(apb_if.PWRITE) $display("[APB_SLAVE] write in adr = %2h data = %5h", apb_if.PADDR, apb_if.PWDATA);
+		if(!apb_if.PWRITE) $display("[APB_SLAVE] read from adr = %2h data = %5h", apb_if.PADDR, apb_if.PRDATA);
+	end
     end //always
 endmodule 
 
