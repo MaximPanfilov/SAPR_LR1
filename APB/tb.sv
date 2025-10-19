@@ -27,15 +27,15 @@ module tb_apb();
 	apb_master.read(0);
 	#15;
 	$display("\n\t=====[TEST] test 2. Write and Read date =====");
-	apb_master.write('h4, "19.10.2025");
+	apb_master.write('h4, 'h19102025); //19.10.2025
 	apb_master.read('h4);
 	#15;
 	$display("\n\t=====[TEST] test 3. Write and Read second name =====");
-	apb_master.write('h8, "Panf");
+	apb_master.write('h8, 'h666E6150); //Panf
 	apb_master.read('h8);
 	#15;
 	$display("\n\t=====[TEST] test 4. Write and Read first name =====");
-	apb_master.write('hC, "Maks");
+	apb_master.write('hC, 'h736B614D); //Maks
 	apb_master.read('hC);
 	#15;
     end

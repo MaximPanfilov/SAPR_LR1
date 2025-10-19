@@ -15,7 +15,7 @@ module apb_master(apb_interface apb_if);
 
 	
     task write(input logic [31:0] waddr, input logic [31:0] wdata);
-        $display("\n[APB_MASTER] Write: %05h, d data: %03h", waddr, wdata);
+        $display("\n[APB_MASTER] Write: %h, d data: %h", waddr, wdata);
         
         apb_if.PSEL    = 1;   
         apb_if.PENABLE = 0;  
@@ -47,7 +47,7 @@ module apb_master(apb_interface apb_if);
         apb_if.PENABLE = 0;    
         apb_if.PWRITE  = 0;  
         apb_if.PADDR   = raddr;
-	$display("[APB_MASTER] READ from addr: %5h", raddr);
+	$display("[APB_MASTER] READ from addr: %h", raddr);
         
         @(posedge apb_if.PCLK);
         
@@ -56,7 +56,7 @@ module apb_master(apb_interface apb_if);
         @(posedge apb_if.PCLK);
 
         rdata = apb_if.PRDATA; 
-        $display("[APB_MASTER] READ rdata = %4h", rdata[31:0]);  
+        $display("[APB_MASTER] READ rdata = %h", rdata[31:0]);  
         
         apb_if.PSEL    = 0;   
         apb_if.PENABLE = 0;    
