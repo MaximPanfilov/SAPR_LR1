@@ -56,7 +56,7 @@ module apb_master(apb_interface apb_if);
         @(posedge apb_if.PCLK);
 
         rdata = apb_if.PRDATA; 
-        $display("[APB_MASTER] READ:d rdata = %4h", rdata[31:0]);  
+        $display("[APB_MASTER] READ rdata = %4h", rdata[31:0]);  
         
         apb_if.PSEL    = 0;   
         apb_if.PENABLE = 0;    
