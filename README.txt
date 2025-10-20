@@ -1,7 +1,13 @@
 Учимся работать с гитом для ЛР по САПР
 Панфилов Максим М3О-409Б-22
-Нужно будет здесь описать запуск:
+
+	[LAUNCH:]
 1. compile
-2. vopt +acc "module from tb" -o ""
-3. vsim ""
+2. vopt +acc "tb_apb" -o "test"
+3. vsim "test"
+
+	ЛИБО
+
+do run.do
+
 
